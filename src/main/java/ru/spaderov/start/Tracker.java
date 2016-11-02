@@ -1,24 +1,39 @@
 package ru.spaderov.start;
 
 import ru.spaderov.models.*;
+import java.util.*;
 
-public class Tracker {
+public class Tracker {	
+	private Item[] items = new Item[10];
+	private int position = 0;
+	private static final Random RN = new Random();
 	
-	public Item[] items = new Item[3];
+	public Item add(Item item) {
+		item.setId(this.generateId());
+		this.items[position++] = item; 
+		return item;
+	}
 	
-	public static void main(String[]  args) {
-		Tracker tracker = new Tracker();
-		
-		tracker.items[0] = new Item("name", "desc", 01);
-		tracker.items[1] = new Task("task", "desc");
-		tracker.items[2] = new Bug();
-		
-		for (Item item : tracker.items) {
-			if(item instanceof Task) {
-				Task task = (Task) item;
-			System.out.println(((Task) item).calculatePrice());
-			}	
-			System.out.println(item.getName() + " " + item.getDescription());
+	protected Item findById(String id) {
+		Item result = null;
+		for  (Item item : items) {
+			if (item != null && item.getId().equals(id)) {
+				result = item;
+				break;
+			}
 		}
+		return result;
+	}
+	
+	String generateId() {
+		return String.valueOf(System.currentTimeMillis() + RN.nextInt(100));
+	}
+	
+	public Item[] getAll() {
+			Item[] result = new Item[this.position];
+			for (int index = 0; index!=this.position; index++) {
+				result[index] = this.items[index];
+			}
+			return result;
 	}
 }

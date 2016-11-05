@@ -2,6 +2,7 @@ package ru.spaderov.start;
 
 import ru.spaderov.models.*;
 import java.util.*;
+import java.lang.*;
 
 public class Tracker {	
 	private Item[] items = new Item[10];
@@ -63,5 +64,46 @@ public class Tracker {
 		item.setComment(this.generateId());
 		this.items[position++] = item;
 		return item;
+	}
+
+	/**
+	 *редактируем заявку по Id:
+	 *Так как в задании указано использовать статические значения,передаём в метод
+	 *редактируемые переменные newName и newDescription;
+	 */
+	public void editById(Item item) {
+		Item result = null;
+		for(Item itm:items) {
+			if(itm.equals(findById(item.getId()))) {
+				result = item;
+				result.setName(item.getName());
+				result.setDescription(item.getDescription());
+			}
+		}
+
+
+	}
+
+	public void deleteById(String id) {
+
+		for (int k = 0; k < items.length; k++) {
+			items[k].setId("" + (k + 1));
+			if (items[k].getId().equals(id)) {
+				items[k].setName(null);
+				items[k].setDescription(null);
+			}
+			for (int i = 0; i < items.length; i++) {
+				for (int j = 0; j < items.length; j++) {
+					if (items[j].getName() == null) {
+						if ((j + 1) <= items.length - 1) {
+							Item temp = items[j];
+							items[j] = items[j + 1];
+							items[j + 1] = temp;
+						}
+					}
+				}
+
+			}
+		}
 	}
 }

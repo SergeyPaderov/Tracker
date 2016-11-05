@@ -27,8 +27,16 @@ public class Item {
 		return this.name;
 	}
 
+	public void setName(String name) {
+		this.name = this.name;
+	}
+
 	public String getDescription() {
 		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = this.description;
 	}
 
 	public long getCreate() {

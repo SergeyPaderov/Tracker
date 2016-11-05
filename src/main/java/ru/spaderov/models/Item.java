@@ -43,7 +43,11 @@ public class Item {
 		this.id = id;
 	}
 
-	public void setConnect(String connect) {
-		this.comment = connect;
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String getComment() {
+		return this.comment;
 	}
 }

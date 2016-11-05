@@ -7,8 +7,4 @@ public class Task extends Item {
 		this.name = name;
 		this.description = desc;
 	}
-	
-	public String calculatePrice() {
-		return "100%";
-	}
-} 
+}
